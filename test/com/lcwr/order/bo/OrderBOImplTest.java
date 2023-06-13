@@ -102,6 +102,14 @@ public class OrderBOImplTest {
 		
 	}
 	
+	@Test(expected = BOException.class)
+	public void cancelOrder_Should_Throw_A_BOException_On_Update() throws SQLException, BOException {
+	
+		Order order = new Order();
+		when(dao.read(123)).thenReturn(order);
+		when(dao.update(order)).thenThrow(SQLException.class);
+	    bo.cancelOrder(123);
+	}
 	
 }
 
