@@ -53,5 +53,16 @@ public class OrderBOImplTest {
 		assertFalse(result);
 		verify(dao).create(order);
 	}
+	@Test(expected = BOException.class)
+	public void placeOrder_Should_Throw_BOException() throws SQLException, BOException {
+		
+
+		Order order = new Order();
+		when(dao.create(order)).thenThrow(SQLException.class);
+		
+		boolean result = bo.placeOrder(order);
+		
+		
+	}
 
 }
