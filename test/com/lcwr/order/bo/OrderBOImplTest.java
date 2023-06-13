@@ -64,5 +64,30 @@ public class OrderBOImplTest {
 		
 		
 	}
+	
+	@Test
+	public void cancelOrder_Should_Cancel_The_Order() throws SQLException, BOException {
+	
+		Order order = new Order();
+		when(dao.read(123)).thenReturn(order);
+		when(dao.update(order)).thenReturn(1);
+		boolean result = bo.cancelOrder(123);
+		
+		assertTrue(result);
+		verify(dao).read(123);
+		verify(dao).update(order);
+		
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
